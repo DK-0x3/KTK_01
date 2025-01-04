@@ -22,7 +22,7 @@
             <Button Content="Выход" Padding="20,5,20,5" Foreground="#696969" Margin="10"/>
             <Button Grid.Column="1" HorizontalAlignment="Center"
                 Content="Расписание" Padding="20,5,20,5" 
-                Foreground="White"/>
+                Foreground="White" Click="goScheduleTeacher_Click"/>
             <Button Grid.Column="2" HorizontalAlignment="Center"
                 Content="Студенты" Padding="20,5,20,5" 
                 Foreground="White"/>

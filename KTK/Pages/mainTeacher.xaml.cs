@@ -24,5 +24,10 @@ namespace KTK.Pages
         {
             InitializeComponent();
         }
+
+        private void goScheduleTeacher_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

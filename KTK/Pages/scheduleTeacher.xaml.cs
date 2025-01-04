@@ -18,11 +18,11 @@ using KTK.models;
 namespace KTK.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для scheduleStudent.xaml
+    /// Логика взаимодействия для scheduleTeacher.xaml
     /// </summary>
-    public partial class scheduleStudent : Page
+    public partial class scheduleTeacher : Page
     {
-        public scheduleStudent()
+        public scheduleTeacher()
         {
             InitializeComponent();
             var scheduleList = new List<scheduleModel>
@@ -31,7 +31,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddMinutes(30),
                 EndTime = DateTime.Now.AddMinutes(90),
-                TeacherAndGroup = "Teacher1",
+                TeacherAndGroup = "363",
                 Name = "MDK XUITA 101",
                 Auditorium = "2222"
             },
@@ -39,7 +39,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddHours(2),
                 EndTime = DateTime.Now.AddHours(3),
-                TeacherAndGroup = "Teacher2",
+                TeacherAndGroup = "363",
                 Name = "MDK AI 205",
                 Auditorium = "3333"
             },
@@ -47,7 +47,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddMinutes(120),
                 EndTime = DateTime.Now.AddMinutes(180),
-                TeacherAndGroup = "Teacher3",
+                TeacherAndGroup = "367",
                 Name = "MDK Prog 110",
                 Auditorium = "4444"
             },
@@ -55,7 +55,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddMinutes(240),
                 EndTime = DateTime.Now.AddMinutes(300),
-                TeacherAndGroup = "Teacher4",
+                TeacherAndGroup = "367",
                 Name = "MDK CyberSecurity 220",
                 Auditorium = "5555"
             },
@@ -63,7 +63,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddHours(5),
                 EndTime = DateTime.Now.AddHours(6),
-                TeacherAndGroup = "Teacher5",
+                TeacherAndGroup = "666A",
                 Name = "MDK XUITA 300",
                 Auditorium = "6666"
             },
@@ -71,7 +71,7 @@ namespace KTK.Pages
             {
                 StartTime = DateTime.Now.AddHours(5),
                 EndTime = DateTime.Now.AddHours(6),
-                TeacherAndGroup = "Teacher5",
+                TeacherAndGroup = "666",
                 Name = "MDK XUITA 300",
                 Auditorium = "6666"
             }
