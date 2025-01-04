@@ -19,13 +19,13 @@
         VerticalAlignment="Center"
         Margin="50, 0, 50, 0">
 
-            <TextBox Margin="150, 20, 150, 0" 
+            <TextBox x:Name="loginTextBox" Margin="150, 20, 150, 0" 
                 ui:ControlHelper.PlaceholderText="Логин" 
                 ui:ControlHelper.CornerRadius="5"
                 ui:Design.RequestedTheme="Dark"
                 Background="#4E4E50"
                 BorderThickness="0"/>
-            <PasswordBox Margin="150, 20, 150, 0" 
+            <PasswordBox x:Name="passwordTextBox" Margin="150, 20, 150, 0" 
                 ui:ControlHelper.PlaceholderText="Пароль" 
                 ui:ControlHelper.CornerRadius="5"
                 Background="#4E4E50"

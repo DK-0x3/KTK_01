@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KTK.api;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,25 @@ namespace KTK.Pages
     /// </summary>
     public partial class authorization : Page
     {
+        private User _user;
         public authorization()
         {
             InitializeComponent();
+            _user = new User();
         }
 
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(PageNavigator.mainStudent);
+            bool answer = _user.Authorization($"SELECT * FROM [User] WHERE [login] = {loginTextBox.Text} AND [password] = {passwordTextBox.Password}"); 
+            if (answer == true)
+            {
+                MessageBox.Show("Вперед и только вперед");
+                NavigationService.Navigate(PageNavigator.mainStudent);
+            }
+            else
+            {
+                MessageBox.Show("Что то тут не так");
+            }
         }
         
         private void GoRegistration_Click(object sender, RoutedEventArgs e)
