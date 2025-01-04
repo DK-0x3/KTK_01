@@ -24,7 +24,7 @@
                     Content="Расписание" Padding="20,5,20,5" 
                     Foreground="White" Click="goScheduleStudent_Click"/>
             <Button Grid.Column="2" HorizontalAlignment="Center"
-                    Content="Преподаватели" Padding="20,5,20,5" 
+                    Content="Преподаватели" Padding="20,5,20,5"
                     Foreground="White" Click="goTeacherStudent_Click"/>
         </Grid>
         <Frame Grid.Row="1" x:Name="FrameStudent"/>
