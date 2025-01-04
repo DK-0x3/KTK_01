@@ -1,0 +1,83 @@
+﻿<Page x:Class="KTK.Pages.registration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:local="clr-namespace:KTK.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="registration" Background="#1A1A1D">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <ui:SimpleStackPanel
+            VerticalAlignment="Center"
+            Margin="50, 0, 50, 0">
+
+            <TextBox Margin="150, 20, 150, 0" 
+                     ui:ControlHelper.PlaceholderText="ФИО" 
+                     ui:ControlHelper.CornerRadius="5"
+                     Background="#4E4E50"
+                     BorderThickness="0"/>
+            <TextBox Margin="150, 20, 150, 0" 
+                    ui:ControlHelper.PlaceholderText="Логин" 
+                    ui:ControlHelper.CornerRadius="5"
+                    Background="#4E4E50"
+                    BorderThickness="0"/>
+            <TextBox Margin="150, 20, 150, 0" 
+                    ui:ControlHelper.PlaceholderText="Почта" 
+                    ui:ControlHelper.CornerRadius="5"
+                    Background="#4E4E50"
+                    BorderThickness="0"/>
+            <PasswordBox Margin="150, 20, 150, 0" 
+                    ui:ControlHelper.PlaceholderText="Пароль" 
+                    ui:ControlHelper.CornerRadius="5"
+                    Background="#4E4E50"
+                    BorderThickness="0"/>
+            <Grid 
+                Margin="0, 30, 0, 0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+               
+                <ComboBox Width="250"
+                          SelectionChanged="ComboBoxRole_SelectionChanged">
+                    <ComboBoxItem Content="Студент" />
+                    <ComboBoxItem Content="Преподаватель" />
+                </ComboBox>
+                <ui:AutoSuggestBox x:Name="BoxGroup"
+                                   Visibility="Hidden"
+                    Grid.Column="2"
+                    Width="250">
+                </ui:AutoSuggestBox>
+            </Grid>
+        </ui:SimpleStackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button 
+                Content="Назад"
+                HorizontalAlignment="Center"
+                Padding="80,10,80,10"
+                Foreground="#696969"
+                Click="GoAuthorization_Click"
+                />
+            <Button Grid.Column="1"
+                Content="Зарегистрироваться"
+                HorizontalAlignment="Center"
+                Padding="80,10,80,10"
+                Foreground="White" FontFamily="Rockwell Extra Bold"
+                />
+        </Grid>
+    </Grid>
+</Page>
