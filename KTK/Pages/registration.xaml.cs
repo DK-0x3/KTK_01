@@ -23,10 +23,12 @@ namespace KTK.Pages
     public partial class registration : Page
     {
         private User _user;
+        private Group _group;
         public registration()
         {
             InitializeComponent();
             _user = new User();
+            _group = new Group();
         }
 
         private void ComboBoxRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -82,16 +84,16 @@ namespace KTK.Pages
                 int userID = _user.Registration($"INSERT INTO [User] ([email],[fio],[login],[password],[role])" +
                     $" OUTPUT INSERTED.id " +
                     $" VALUES " +
-                    $"('{emailTextBox.Text}','{fioTextBox.Text}','{loginTextBox.Text}','{passwordTextBox.Password}','{selectetRoleComboBox.Text}')");
+                    $"( N'{emailTextBox.Text}', N'{fioTextBox.Text}', N'{loginTextBox.Text}', N'{passwordTextBox.Password}', N'{selectetRoleComboBox.Text}')");
 
 
-               int groupID =  _user.AppendGroupForUser(
-                    $"INSERT INTO [Group] ([name])" +
+               int groupID = _group.AppendGroupForUser(
+                    $"INSERT INTO [Group] ([name]) " +
                     $"OUTPUT INSERTED.id" +
                     $" VALUES ('{BoxGroup.Text}')");
 
 
-                _user.MergeGroupAndUser($"INSERT INTO [User_group] ([group],[user]) VALUES ({groupID},{userID})");
+                _group.MergeGroupAndUser($"INSERT INTO [User_group] ([group],[user]) VALUES ({groupID},{userID})");
 
                 navigateUser(selectetRoleComboBox.Text);
             }

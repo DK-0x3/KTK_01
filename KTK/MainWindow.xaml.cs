@@ -23,7 +23,7 @@ namespace KTK
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(PageNavigator.mainTeacher);
+            MainFrame.NavigationService.Navigate(PageNavigator.authorization);
         }
     }
 }

@@ -111,22 +111,6 @@ namespace KTK
             }
         }
 
-        private static TeacherStudent TeacherStudent;
-        public static TeacherStudent teacherStudent
-        {
-            get
-            {
-                if (TeacherStudent == null)
-                {
-                    TeacherStudent = new TeacherStudent();
-                    return TeacherStudent;
-                }
-                else
-                {
-                    return TeacherStudent;
-                }
-            }
-        }
 
         private static scheduleTeacher ScheduleTeacher;
         public static scheduleTeacher scheduleTeacher
@@ -158,6 +142,23 @@ namespace KTK
                 else
                 {
                     return StudentTeacher;
+                }
+            }
+        }
+
+        private static teacherStudent TeacherStudent;
+        public static teacherStudent teacherStudent
+        {
+            get
+            {
+                if (TeacherStudent == null)
+                {
+                    TeacherStudent = new teacherStudent();
+                    return TeacherStudent;
+                }
+                else
+                {
+                    return TeacherStudent;
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using KTK.models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -19,8 +20,8 @@ namespace KTK.api
             _database = new Database();
             _modelUser = new UserModel();
         }
-        
-        public bool Authorization(string query)
+
+        public (bool isAuth,string role) Authorization(string query)
         {
             using (var connection = new SqlConnection(_database.connectionString))
             using (var command = new SqlCommand(query, connection))
@@ -29,13 +30,16 @@ namespace KTK.api
 
                 if (command.ExecuteScalar() != null)
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    using(var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            return (true, (string)reader["role"]);
+                        }
+                    }
                 }
             }
+            return (false, "");
         }
 
         public int Registration(string query)
@@ -49,24 +53,48 @@ namespace KTK.api
             }
         }
 
-        public int AppendGroupForUser(string query)
+        public Dictionary<string, string> GetDataOnStudentsRole(string query)
         {
+            Dictionary<string, string> users = new Dictionary<string, string>();
             using (var connection = new SqlConnection(_database.connectionString))
             using (var command = new SqlCommand(query, connection))
             {
                 connection.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
 
-                return Convert.ToInt32(command.ExecuteScalar());
+                        string email = reader[0].ToString();
+                        string fio = reader[1].ToString();
+
+                        users.Add(email, fio);
+
+                    }
+                }
+                return users;
             }
         }
-
-        public void MergeGroupAndUser(string query)
+        public Dictionary<string, string> GetDataOnTeacheRole(string query)
         {
+            Dictionary<string, string> users = new Dictionary<string, string>();
             using (var connection = new SqlConnection(_database.connectionString))
             using (var command = new SqlCommand(query, connection))
             {
                 connection.Open();
-                command.ExecuteNonQuery();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        string email = reader[0].ToString();
+                        string fio = reader[1].ToString();
+
+                        users.Add(email, fio);
+
+                    }
+                }
+                return users;
             }
         }
     }

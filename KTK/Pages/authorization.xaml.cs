@@ -35,11 +35,10 @@ namespace KTK.Pages
             bool validateInput = validate();
 
             if (validateInput) {
-                bool answer = _user.Authorization($"SELECT * FROM [User] WHERE [login] = '{loginTextBox.Text}' AND [password] = '{passwordTextBox.Password}'");
+                var (answer,role) = _user.Authorization($"SELECT * FROM [User] WHERE [login] = '{loginTextBox.Text}' AND [password] = '{passwordTextBox.Password}'");
                 if (answer == true)
                 {
-                    MessageBox.Show("Вперед и только вперед");
-                    NavigationService.Navigate(PageNavigator.mainStudent);
+                    navigateUser(role);
                 }
                 else
                 {

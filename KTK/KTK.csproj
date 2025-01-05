@@ -67,6 +67,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="api\Database.cs" />
+    <Compile Include="api\Group.cs" />
     <Compile Include="api\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -111,7 +112,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TeacherStudent.xaml">
+    <Page Include="Pages\teacherStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,8 +149,8 @@
     <Compile Include="Pages\studentTeacher.xaml.cs">
       <DependentUpon>studentTeacher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TeacherStudent.xaml.cs">
-      <DependentUpon>TeacherStudent.xaml</DependentUpon>
+    <Compile Include="Pages\teacherStudent.xaml.cs">
+      <DependentUpon>teacherStudent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
