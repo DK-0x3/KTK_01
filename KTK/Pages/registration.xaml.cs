@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Group = KTK.api.Group;
 
 namespace KTK.Pages
 {
@@ -86,14 +88,25 @@ namespace KTK.Pages
                     $" VALUES " +
                     $"( N'{emailTextBox.Text}', N'{fioTextBox.Text}', N'{loginTextBox.Text}', N'{passwordTextBox.Password}', N'{selectetRoleComboBox.Text}')");
 
+                if (selectetRoleComboBox.Text == UserRole.Student)
+                {
+                    bool answer = _group.CheckGroupOnCreated($"Select * FROM [Group] WHERE name = N'{BoxGroup.Text}'");
+                    if (answer)
+                    {
+                        int groupID = _group.GetIdByNameGroup($"Select id FROM [Group] WHERE name = '{BoxGroup.Text}'");
+                        _group.MergeGroupAndUser($"INSERT INTO [UserGroup] ([group],[user]) VALUES ({groupID},{userID})");
+                    }
+                    else
+                    {
+                        int groupID = _group.AppendGroupForUser(
+                        $"INSERT INTO [Group] ([name]) " +
+                        $"OUTPUT INSERTED.id" +
+                        $" VALUES ('{BoxGroup.Text}')");
 
-               int groupID = _group.AppendGroupForUser(
-                    $"INSERT INTO [Group] ([name]) " +
-                    $"OUTPUT INSERTED.id" +
-                    $" VALUES ('{BoxGroup.Text}')");
-
-
-                _group.MergeGroupAndUser($"INSERT INTO [User_group] ([group],[user]) VALUES ({groupID},{userID})");
+                        _group.MergeGroupAndUser($"INSERT INTO [UserGroup] ([group],[user]) VALUES ({groupID},{userID})");
+                    }
+                }
+              
 
                 navigateUser(selectetRoleComboBox.Text);
             }

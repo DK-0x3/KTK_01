@@ -8,7 +8,7 @@ CREATE TABLE [User] (
   PRIMARY KEY ([id])
 );
 
-CREATE TABLE [User_group] (
+CREATE TABLE [UserGroup] (
   [group] int NOT NULL UNIQUE,
   [user] int NOT NULL UNIQUE,
   PRIMARY KEY ([group], [user])
@@ -24,9 +24,12 @@ CREATE TABLE [Shedule] (
   [id] int IDENTITY(1,1) NOT NULL UNIQUE,
   [group] int NOT NULL,
   [user] int NOT NULL,
-  [room] int NOT NULL,
-  [schedule_date_] date NOT NULL,
-  [schedule_object] int NOT NULL,
+  [room] int NOT NULL,   
+  [day_of_week] NVARCHAR(50) NOT NULL,  
+  [start_time] TIME NOT NULL,
+  [end_time] TIME NOT NULL,                     
+  [subject] int NOT NULL,
+  [full_date] DATE NOT NULL
   PRIMARY KEY ([id])
 );
 
@@ -36,16 +39,16 @@ CREATE TABLE [Room] (
   PRIMARY KEY ([id])
 );
 
-CREATE TABLE [Schedule_object] (
+CREATE TABLE [Subject] (
   [id] int IDENTITY(1,1) NOT NULL UNIQUE,
   [name] nvarchar(64) NOT NULL,
   PRIMARY KEY ([id])
 );
 
 
-ALTER TABLE [User_group] ADD CONSTRAINT [user_group_fk0] FOREIGN KEY ([group]) REFERENCES [Group]([id]);
+ALTER TABLE [UserGroup] ADD CONSTRAINT [user_group_fk0] FOREIGN KEY ([group]) REFERENCES [Group]([id]);
 
-ALTER TABLE [User_group] ADD CONSTRAINT [user_group_fk1] FOREIGN KEY ([user]) REFERENCES [User]([id]);
+ALTER TABLE [UserGroup] ADD CONSTRAINT [user_group_fk1] FOREIGN KEY ([user]) REFERENCES [User]([id]);
 
 ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk1] FOREIGN KEY ([group]) REFERENCES [Group]([id]);
 
@@ -53,4 +56,4 @@ ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk2] FOREIGN KEY ([user]) REFERENC
 
 ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk3] FOREIGN KEY ([room]) REFERENCES [Room]([id]);
 
-ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk5] FOREIGN KEY ([schedule_object]) REFERENCES [schedule_object]([id]);
+ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk5] FOREIGN KEY ([subject]) REFERENCES [Subject]([id]);

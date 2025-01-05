@@ -34,5 +34,32 @@ namespace KTK.api
                 command.ExecuteNonQuery();
             }
         }
+
+        public bool CheckGroupOnCreated(string query)
+        {
+            using (var connection = new SqlConnection(_database.connectionString))
+            using (var command = new SqlCommand(query, connection)) {
+            
+                connection.Open();
+
+                if (Convert.ToInt32(command.ExecuteScalar()) > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public int GetIdByNameGroup(string query)
+        {
+            using (var connection = new SqlConnection(_database.connectionString))
+            using (var command = new SqlCommand(query, connection))
+            {
+
+                connection.Open();
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
     }
 }

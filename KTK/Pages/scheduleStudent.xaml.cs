@@ -25,77 +25,7 @@ namespace KTK.Pages
         public scheduleStudent()
         {
             InitializeComponent();
-            var scheduleList = new List<scheduleModel>
-            {
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddMinutes(30),
-                EndTime = DateTime.Now.AddMinutes(90),
-                TeacherAndGroup = "Teacher1",
-                Name = "MDK XUITA 101",
-                Auditorium = "2222"
-            },
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddHours(2),
-                EndTime = DateTime.Now.AddHours(3),
-                TeacherAndGroup = "Teacher2",
-                Name = "MDK AI 205",
-                Auditorium = "3333"
-            },
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddMinutes(120),
-                EndTime = DateTime.Now.AddMinutes(180),
-                TeacherAndGroup = "Teacher3",
-                Name = "MDK Prog 110",
-                Auditorium = "4444"
-            },
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddMinutes(240),
-                EndTime = DateTime.Now.AddMinutes(300),
-                TeacherAndGroup = "Teacher4",
-                Name = "MDK CyberSecurity 220",
-                Auditorium = "5555"
-            },
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddHours(5),
-                EndTime = DateTime.Now.AddHours(6),
-                TeacherAndGroup = "Teacher5",
-                Name = "MDK XUITA 300",
-                Auditorium = "6666"
-            },
-            new scheduleModel
-            {
-                StartTime = DateTime.Now.AddHours(5),
-                EndTime = DateTime.Now.AddHours(6),
-                TeacherAndGroup = "Teacher5",
-                Name = "MDK XUITA 300",
-                Auditorium = "6666"
-            }
-            };
-
-            var sh = new scheduleModule();
-            sh.CreateScheduleItems(DateTime.Now, scheduleList);
-            var sh2 = new scheduleModule();
-            sh2.CreateScheduleItems(DateTime.Now, scheduleList);
-            var sh3 = new scheduleModule();
-            sh3.CreateScheduleItems(DateTime.Now, scheduleList);
-            var sh4 = new scheduleModule();
-            sh4.CreateScheduleItems(DateTime.Now, scheduleList);
-            var sh5 = new scheduleModule();
-            sh5.CreateScheduleItems(DateTime.Now, scheduleList);
-            var sh6 = new scheduleModule();
-            sh6.CreateScheduleItems(DateTime.Now, scheduleList);
-
-            scheduleWrapPanel.Children.Add(sh);
-            scheduleWrapPanel.Children.Add(sh2);
-            scheduleWrapPanel.Children.Add(sh3);
-            scheduleWrapPanel.Children.Add(sh4);
-            scheduleWrapPanel.Children.Add(sh5);
-            scheduleWrapPanel.Children.Add(sh6);
+            var scheduleList = new List<ScheduleModel>();
         }
     }
 }

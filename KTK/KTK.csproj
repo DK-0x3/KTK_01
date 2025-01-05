@@ -122,7 +122,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\scheduleModel.cs" />
+    <Compile Include="models\ScheduleModel.cs" />
     <Compile Include="models\UserModel.cs" />
     <Compile Include="PageNavigator.cs" />
     <Compile Include="Pages\authorization.xaml.cs">
@@ -169,6 +169,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="migrations\test_rows.sql" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
