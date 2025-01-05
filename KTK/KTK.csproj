@@ -103,6 +103,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\scheduleTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\studentTeacher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TeacherStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +140,12 @@
     </Compile>
     <Compile Include="Pages\scheduleStudent.xaml.cs">
       <DependentUpon>scheduleStudent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\scheduleTeacher.xaml.cs">
+      <DependentUpon>scheduleTeacher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\studentTeacher.xaml.cs">
+      <DependentUpon>studentTeacher.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TeacherStudent.xaml.cs">
       <DependentUpon>TeacherStudent.xaml</DependentUpon>
