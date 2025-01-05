@@ -24,5 +24,10 @@ namespace KTK.Pages
         {
             InitializeComponent();
         }
+
+        private void goExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

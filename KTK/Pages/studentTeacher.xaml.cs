@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KTK
+namespace KTK.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для studentTeacher.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class studentTeacher : Page
     {
-        public MainWindow()
+        public studentTeacher()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(PageNavigator.mainTeacher);
         }
     }
 }
