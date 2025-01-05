@@ -19,14 +19,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Выход" Padding="20,5,20,5" Foreground="#696969" Margin="10"/>
+            <Button Content="Выход" Padding="20,5,20,5" Foreground="#696969" Margin="10" Click="goExit_Click"/>
             <Button Grid.Column="1" HorizontalAlignment="Center"
                 Content="Расписание" Padding="20,5,20,5" 
                 Foreground="White" Click="goScheduleTeacher_Click"/>
             <Button Grid.Column="2" HorizontalAlignment="Center"
                 Content="Студенты" Padding="20,5,20,5" 
-                Foreground="White"/>
+                Foreground="White" Click="goStudentTeacher_Click"/>
         </Grid>
-        <Frame Grid.Row="1" x:Name="FrameStudent"/>
+        <Frame Grid.Row="1" x:Name="FrameTeacher"/>
     </Grid>
 </Page>

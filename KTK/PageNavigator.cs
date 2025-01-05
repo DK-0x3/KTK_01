@@ -144,5 +144,22 @@ namespace KTK
                 }
             }
         }
+
+        private static studentTeacher StudentTeacher;
+        public static studentTeacher studentTeacher
+        {
+            get
+            {
+                if (StudentTeacher == null)
+                {
+                    StudentTeacher = new studentTeacher();
+                    return StudentTeacher;
+                }
+                else
+                {
+                    return StudentTeacher;
+                }
+            }
+        }
     }
 }

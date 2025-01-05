@@ -23,11 +23,22 @@ namespace KTK.Pages
         public mainTeacher()
         {
             InitializeComponent();
+            FrameTeacher.NavigationService.Navigate(PageNavigator.scheduleTeacher);
         }
 
         private void goScheduleTeacher_Click(object sender, RoutedEventArgs e)
         {
+            FrameTeacher.NavigationService.Navigate(PageNavigator.scheduleTeacher);
+        }
 
+        private void goStudentTeacher_Click(object sender, RoutedEventArgs e)
+        {
+            FrameTeacher.NavigationService.Navigate(PageNavigator.studentTeacher);
+        }
+
+        private void goExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
