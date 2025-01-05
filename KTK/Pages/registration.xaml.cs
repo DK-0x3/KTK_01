@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KTK.api;
+using KTK.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace KTK.Pages
     /// </summary>
     public partial class registration : Page
     {
+        private User _user;
         public registration()
         {
             InitializeComponent();
+            _user = new User();
         }
 
         private void ComboBoxRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,9 +45,76 @@ namespace KTK.Pages
             }
         }
 
+
+        private bool validate()
+        {
+            if (loginTextBox.Text.Length>4 && passwordTextBox.Password.Length>6 && emailTextBox.Text!="" && fioTextBox.Text.Length>4 && selectetRoleComboBox.Text!="")
+            {
+               if (selectetRoleComboBox.Text == UserRole.Student)
+                {
+                    if (BoxGroup.Text != "")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         private void GoAuthorization_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageNavigator.authorization);
         }
+
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            bool validateUser  = validate();
+
+            if (validateUser)
+            {
+                int userID = _user.Registration($"INSERT INTO [User] ([email],[fio],[login],[password],[role])" +
+                    $" OUTPUT INSERTED.id " +
+                    $" VALUES " +
+                    $"('{emailTextBox.Text}','{fioTextBox.Text}','{loginTextBox.Text}','{passwordTextBox.Password}','{selectetRoleComboBox.Text}')");
+
+
+               int groupID =  _user.AppendGroupForUser(
+                    $"INSERT INTO [Group] ([name])" +
+                    $"OUTPUT INSERTED.id" +
+                    $" VALUES ('{BoxGroup.Text}')");
+
+
+                _user.MergeGroupAndUser($"INSERT INTO [User_group] ([group],[user]) VALUES ({groupID},{userID})");
+
+                navigateUser(selectetRoleComboBox.Text);
+            }
+            else
+            {
+                MessageBox.Show("Увы введите незаполненые поляяяя");
+            }
+
+        }
+
+        public void navigateUser(string role)
+        {
+            if (role == UserRole.Student)
+            {
+                NavigationService.Navigate(PageNavigator.mainStudent);
+            }
+
+            if (role == UserRole.Teacher)
+            {
+                NavigationService.Navigate(PageNavigator.mainTeacher);
+            }
+        }
+
+
     }
 }

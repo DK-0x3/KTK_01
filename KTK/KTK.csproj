@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\scheduleModel.cs" />
+    <Compile Include="models\UserModel.cs" />
     <Compile Include="PageNavigator.cs" />
     <Compile Include="Pages\authorization.xaml.cs">
       <DependentUpon>authorization.xaml</DependentUpon>
@@ -178,8 +179,9 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="migrations\" />
+    <Content Include="migrations\init.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
