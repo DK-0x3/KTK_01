@@ -127,5 +127,39 @@ namespace KTK
                 }
             }
         }
+
+        private static scheduleTeacher ScheduleTeacher;
+        public static scheduleTeacher scheduleTeacher
+        {
+            get
+            {
+                if (ScheduleTeacher == null)
+                {
+                    ScheduleTeacher = new scheduleTeacher();
+                    return ScheduleTeacher;
+                }
+                else
+                {
+                    return ScheduleTeacher;
+                }
+            }
+        }
+
+        private static studentTeacher StudentTeacher;
+        public static studentTeacher studentTeacher
+        {
+            get
+            {
+                if (StudentTeacher == null)
+                {
+                    StudentTeacher = new studentTeacher();
+                    return StudentTeacher;
+                }
+                else
+                {
+                    return StudentTeacher;
+                }
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace KTK.models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Name { get; set; }
-        public string Teacher {  get; set; }
+        public string TeacherAndGroup {  get; set; }
         public string Auditorium { get; set; }
     }
 }

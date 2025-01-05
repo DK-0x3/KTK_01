@@ -87,7 +87,7 @@ namespace KTK.controls
 
                 var label4 = new Label
                 {
-                    Content = schedule.Teacher,
+                    Content = schedule.TeacherAndGroup,
                     FontSize = 8,
                     Foreground = (Brush)new BrushConverter().ConvertFrom("#696969"),
                     VerticalAlignment = VerticalAlignment.Top,

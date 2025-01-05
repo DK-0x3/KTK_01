@@ -33,5 +33,10 @@ namespace KTK.Pages
         {
             FrameStudent.NavigationService.Navigate(PageNavigator.teacherStudent);
         }
+
+        private void goExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
