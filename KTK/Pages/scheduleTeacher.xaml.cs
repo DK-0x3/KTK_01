@@ -28,85 +28,61 @@ namespace KTK.Pages
     public partial class scheduleTeacher : Page
     {
         private Schedule _schedule;
-        private List<ScheduleModel> _scheduleListMonday;
-        private List<ScheduleModel> _scheduleListTuesday;
-        private List<ScheduleModel> _scheduleListWidnesday;
-        private List<ScheduleModel> _scheduleListThursday;
-        private List<ScheduleModel> _scheduleListFriday;
-        private List<ScheduleModel> _scheduleListSaturday;
+        private Dictionary<string, List<ScheduleModel>> _scheduleByDay;
+
         public scheduleTeacher()
         {
             InitializeComponent();
-            _scheduleListMonday = new List<ScheduleModel>();
-            _scheduleListTuesday = new List<ScheduleModel>();
-            _scheduleListWidnesday = new List<ScheduleModel>();
-            _scheduleListThursday = new List<ScheduleModel>();
-            _scheduleListFriday = new List<ScheduleModel>();
-            _scheduleListSaturday = new List<ScheduleModel>();
+            _scheduleByDay = new Dictionary<string, List<ScheduleModel>>()
+            {
+                { "Понедельник", new List<ScheduleModel>() },
+                { "Вторник", new List<ScheduleModel>() },
+                { "Среда", new List<ScheduleModel>() },
+                { "Четверг", new List<ScheduleModel>() },
+                { "Пятница", new List<ScheduleModel>() },
+                { "Суббота", new List<ScheduleModel>() }
+            };
             _schedule = new Schedule();
+            DataContext = this;
             LoadData();
         }
 
         public void LoadData()
         {
-            var schedulesMonday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,   \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Понедельник'");
-            var schedulesTuesday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT  \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,   \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Вторник'");
-            var schedulesWidnesday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,  \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Среда'");
-            var schedulesThursday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT  \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,  \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Четверг'");
-            var schedulesFriday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT  \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,  \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Пятница'");
-            var schedulesSaturday = _schedule.GetInfoOnSchedules($"SELECT DISTINCT  \t[Group].[name] as group_name, \r\n\t[User].[fio] as [user_name],\r\n\t[Room].[name] as room_name,\r\n\t[Subject].[name] as subject_name,  \r\n\t[day_of_week],\r\n\t[start_time],\r\n\t[end_time],\r\n\t[full_date]\r\nFROM [Schedule]\r\nINNER JOIN [Group] ON [Group].id = [Schedule].[group]\r\nINNER JOIN [User] ON [User].id = [Schedule].[user]\r\nINNER JOIN [Room] ON [Room].id = [Schedule].[room]\r\nINNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]\r\nWHERE [Schedule].[user]= {UserStatic.ID} AND [day_of_week] = N'Суббота'");
+            var schedules = _schedule.GetInfoOnSchedules($@"
+                SELECT DISTINCT 
+                    [Group].[name] as group_name, 
+                    [User].[fio] as user_name,
+                    [Room].[name] as room_name,
+                    [Subject].[name] as subject_name,   
+                    [day_of_week],
+                    [start_time],
+                    [end_time],
+                    [full_date]
+                FROM [Schedule]
+                INNER JOIN [Group] ON [Group].id = [Schedule].[group]
+                INNER JOIN [User] ON [User].id = [Schedule].[user]
+                INNER JOIN [Room] ON [Room].id = [Schedule].[room]
+                INNER JOIN [Subject] ON [Subject].id = [Schedule].[subject]
+                WHERE [Schedule].[user]= {UserStatic.ID}");
 
-            if (schedulesMonday.Any())
+            foreach (var schedule in schedules)
             {
-                _scheduleListMonday.AddRange(schedulesMonday);
-                var sh = new scheduleModule();
-                sh.CreateScheduleItems(schedulesMonday.First().FullDate, _scheduleListMonday);
-
-                scheduleWrapPanel.Children.Add(sh);
+                if (_scheduleByDay.ContainsKey(schedule.DayOfWeek))
+                {
+                    _scheduleByDay[schedule.DayOfWeek].Add(schedule);
+                }
             }
 
-            if (schedulesTuesday.Any())
+            foreach (var day in _scheduleByDay)
             {
-                _scheduleListTuesday.AddRange(schedulesTuesday);
-                var sh1 = new scheduleModule();
-                sh1.CreateScheduleItems(schedulesTuesday.First().FullDate, _scheduleListTuesday);
+                if (day.Value.Any())
+                {
+                    var sh = new scheduleModule();
+                    sh.CreateScheduleItems(day.Value.First().FullDate, day.Value, UserRole.Teacher);
 
-                scheduleWrapPanel.Children.Add(sh1);
-            }
-
-            if (schedulesWidnesday.Any())
-            {
-                _scheduleListWidnesday.AddRange(schedulesWidnesday);
-                var sh2 = new scheduleModule();
-                sh2.CreateScheduleItems(schedulesWidnesday.First().FullDate, _scheduleListWidnesday);
-
-                scheduleWrapPanel.Children.Add(sh2);
-            }
-
-            if (schedulesThursday.Any()) { 
-                _scheduleListThursday.AddRange(schedulesThursday);
-            var sh3 = new scheduleModule();
-            sh3.CreateScheduleItems(schedulesThursday.First().FullDate, _scheduleListThursday);
-
-            scheduleWrapPanel.Children.Add(sh3);
-        }
-
-            if (schedulesFriday.Any())
-            {
-                _scheduleListFriday.AddRange(schedulesFriday);
-                var sh4 = new scheduleModule();
-                sh4.CreateScheduleItems(schedulesFriday.First().FullDate, _scheduleListFriday);
-
-                scheduleWrapPanel.Children.Add(sh4);
-            }
-
-            if (schedulesSaturday.Any())
-            {
-                _scheduleListSaturday.AddRange(schedulesSaturday);
-                var sh5 = new scheduleModule();
-                sh5.CreateScheduleItems(schedulesSaturday.First().FullDate, _scheduleListSaturday);
-
-                scheduleWrapPanel.Children.Add(sh5);
+                    scheduleWrapPanel.Children.Add(sh);
+                }
             }
         }
     }

@@ -13,17 +13,12 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <TextBlock
             x:Name="dateText"
             Text="04.01.2024"
             TextAlignment="Center" VerticalAlignment="Top" 
             Foreground="White" FontSize="20"/>
-
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <WrapPanel x:Name="ScheduleWrapPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-             
-            </WrapPanel>
-        </ScrollViewer>
+        <StackPanel Grid.Row="1" x:Name="ScheduleStackPanel">
+        </StackPanel>
     </Grid>
 </UserControl>

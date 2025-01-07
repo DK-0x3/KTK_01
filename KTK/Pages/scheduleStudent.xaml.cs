@@ -63,7 +63,7 @@ namespace KTK.Pages
                 if (day.Value.Any())
                 {
                     var sh = new scheduleModule();
-                    sh.CreateScheduleItems(day.Value.First().FullDate, day.Value);
+                    sh.CreateScheduleItems(day.Value.First().FullDate, day.Value, UserRole.Student);
 
                     scheduleWrapPanel.Children.Add(sh);
                 }
