@@ -1,7 +1,10 @@
-﻿using System;
+﻿using KTK.api;
+using KTK.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Group = KTK.api.Group;
 
 namespace KTK.Pages
 {
@@ -20,9 +24,13 @@ namespace KTK.Pages
     /// </summary>
     public partial class registration : Page
     {
+        private User _user;
+        private Group _group;
         public registration()
         {
             InitializeComponent();
+            _user = new User();
+            _group = new Group();
         }
 
         private void ComboBoxRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,9 +49,90 @@ namespace KTK.Pages
             }
         }
 
+
+        private bool validate()
+        {
+            if (loginTextBox.Text.Length>4 && passwordTextBox.Password.Length>6 && emailTextBox.Text!="" && fioTextBox.Text.Length>4 && selectetRoleComboBox.Text!="")
+            {
+               if (selectetRoleComboBox.Text == UserRole.Student)
+                {
+                    if (BoxGroup.Text != "")
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         private void GoAuthorization_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(PageNavigator.authorization);
         }
+
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            bool validateUser  = validate();
+
+            if (validateUser)
+            {
+                int userID = _user.Registration($"INSERT INTO [User] ([email],[fio],[login],[password],[role])" +
+                    $" OUTPUT INSERTED.id " +
+                    $" VALUES " +
+                    $"( N'{emailTextBox.Text}', N'{fioTextBox.Text}', N'{loginTextBox.Text}', N'{passwordTextBox.Password}', N'{selectetRoleComboBox.Text}')");
+
+                if (selectetRoleComboBox.Text == UserRole.Student)
+                {
+                    bool answer = _group.CheckGroupOnCreated($"Select * FROM [Group] WHERE name = N'{BoxGroup.Text}'");
+                    if (answer)
+                    {
+                        int groupID = _group.GetIdByNameGroup($"Select id FROM [Group] WHERE name = '{BoxGroup.Text}'");
+                        _group.MergeGroupAndUser($"INSERT INTO [UserGroup] ([group],[user]) VALUES ({groupID},{userID})");
+                    }
+                    else
+                    {
+                        int groupID = _group.AppendGroupForUser(
+                        $"INSERT INTO [Group] ([name]) " +
+                        $"OUTPUT INSERTED.id" +
+                        $" VALUES ('{BoxGroup.Text}')");
+
+                        _group.MergeGroupAndUser($"INSERT INTO [UserGroup] ([group],[user]) VALUES ({groupID},{userID})");
+                    }
+
+                    UserStatic.Group = _group.GetGroupOnStudnt($"SELECT [group] FROM [UserGroup]\r\nINNER JOIN [User] on [User].id = [UserGroup].[user]\r\nWHERE [User].[id] = {userID}");
+
+                }
+
+                UserStatic.ID = userID;
+                navigateUser(selectetRoleComboBox.Text);
+            }
+            else
+            {
+                MessageBox.Show("Увы введите незаполненые поляяяя");
+            }
+
+        }
+
+        public void navigateUser(string role)
+        {
+            if (role == UserRole.Student)
+            {
+                NavigationService.Navigate(PageNavigator.mainStudent);
+            }
+
+            if (role == UserRole.Teacher)
+            {
+                NavigationService.Navigate(PageNavigator.mainTeacher);
+            }
+        }
+
+
     }
 }

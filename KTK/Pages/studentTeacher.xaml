@@ -7,13 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="800"
       Title="studentTeacher">
-
     <Grid>
-        <ComboBox HorizontalAlignment="Center" Width="250"/>
-        <DataGrid Margin="0,50,0,0">
+        <DataGrid x:Name="infoUserForDataGrid" Margin="10" ItemsSource="{Binding Users}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ФИО" Binding="{Binding TeacherName}" Width="*" />
-                <DataGridTextColumn Header="Контакты" Binding="{Binding Subject}" Width="*" />
+                <DataGridTextColumn Header="ФИО Ученика" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Контакты" Binding="{Binding Email}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -7,12 +7,16 @@ using System.Windows;
 
 namespace KTK.models
 {
-    public class scheduleModel : DependencyObject
+    public class ScheduleModel : DependencyObject
     {
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string Name { get; set; }
-        public string TeacherAndGroup {  get; set; }
-        public string Auditorium { get; set; }
+        public int Id { get; set; }
+        public string Group { get; set; } 
+        public string Fio { get; set; }  
+        public string Room { get; set; }  
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public string DayOfWeek { get; set; }
+        public string Subject { get; set; } 
+        public DateTime FullDate { get; set; } 
     }
 }

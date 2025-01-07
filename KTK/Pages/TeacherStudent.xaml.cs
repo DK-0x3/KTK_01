@@ -1,5 +1,8 @@
-﻿using System;
+﻿using KTK.api;
+using KTK.models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +19,35 @@ using System.Windows.Shapes;
 namespace KTK.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для TeacherStudent.xaml
+    /// Interaction logic for teacherStudent.xaml
     /// </summary>
-    public partial class TeacherStudent : Page
+    public partial class teacherStudent : Page
     {
-        public TeacherStudent()
+        public ObservableCollection<UserModelOnDataGrid> Users;
+        private User _user;
+        public teacherStudent()
         {
             InitializeComponent();
+            Users = new ObservableCollection<UserModelOnDataGrid>();
+            _user = new User();
+            _ = LoadDataOnUsers();
+        }
+
+        private async Task LoadDataOnUsers()
+        {
+            var users = _user.GetDataOnTeacheRole($"SELECT [email], [fio] FROM [User] WHERE [role] = N'{UserRole.Teacher}'");
+
+            foreach (var user in users) {
+
+                Users.Add(new UserModelOnDataGrid
+                {
+                    Email = user.Key,
+                    Name = user.Value
+                });
+
+            }
+
+            infoUserForDataGrid.ItemsSource = Users;
         }
     }
 }

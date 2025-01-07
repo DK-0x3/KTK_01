@@ -13,52 +13,17 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!-- Привязка DateTime -->
+
         <TextBlock
             x:Name="dateText"
             Text="04.01.2024"
             TextAlignment="Center" VerticalAlignment="Top" 
             Foreground="White" FontSize="20"/>
-        <StackPanel Grid.Row="1" x:Name="ScheduleStackPanel">
-            <!--<Grid Background="#4E4E50" Height="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label FontSize="10" Foreground="Wheat" Content="08:00" Margin="5,0,0,0"/>
-                <Label FontSize="10" Foreground="Wheat" Margin="0,0,5,0" Grid.Column="1" HorizontalAlignment="Right" Content="08:00"/>
-            </Grid>
-            <Grid Height="30">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <Label VerticalAlignment="Center" Margin="5,0,0,0" 
-                       Foreground="White" FontSize="10" 
-                       Content="MDK XUITA XXX"/>
-                <Label Grid.Row="1"
-                    VerticalAlignment="Center" Margin="5,0,0,0" 
-                        Foreground="#696969" FontSize="6" 
-                        Content="Хуила алексеечив К"/>
-                <Label Grid.Column="1" Grid.RowSpan="2"
-                    VerticalAlignment="Center" Margin="0,0,5,0" 
-                        Foreground="White" FontSize="10" 
-                        Content="228A" HorizontalAlignment="Right"/>
-            </Grid>-->
-        </StackPanel>
-        
-        <!-- Привязка массива дисциплин --><!--
-        <ListBox ItemsSource="{Binding Schedule.Disciplines, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="200">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="White" FontSize="16"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>-->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <WrapPanel x:Name="ScheduleWrapPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+             
+            </WrapPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

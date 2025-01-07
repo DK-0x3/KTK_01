@@ -67,6 +67,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="api\Database.cs" />
+    <Compile Include="api\Group.cs" />
+    <Compile Include="api\Schedule.cs" />
     <Compile Include="api\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -111,7 +113,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\TeacherStudent.xaml">
+    <Page Include="Pages\teacherStudent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +123,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="models\scheduleModel.cs" />
+    <Compile Include="models\ScheduleModel.cs" />
+    <Compile Include="models\UserModel.cs" />
     <Compile Include="PageNavigator.cs" />
     <Compile Include="Pages\authorization.xaml.cs">
       <DependentUpon>authorization.xaml</DependentUpon>
@@ -147,8 +150,8 @@
     <Compile Include="Pages\studentTeacher.xaml.cs">
       <DependentUpon>studentTeacher.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\TeacherStudent.xaml.cs">
-      <DependentUpon>TeacherStudent.xaml</DependentUpon>
+    <Compile Include="Pages\teacherStudent.xaml.cs">
+      <DependentUpon>teacherStudent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -167,6 +170,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="migrations\test_rows.sql" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -192,8 +196,9 @@
       <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="migrations\" />
+    <Content Include="migrations\init.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

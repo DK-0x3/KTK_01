@@ -29,6 +29,7 @@ namespace KTK.Pages
         {
             FrameStudent.NavigationService.Navigate(PageNavigator.scheduleStudent);
         }
+
         private void goTeacherStudent_Click(object sender, RoutedEventArgs e)
         {
             FrameStudent.NavigationService.Navigate(PageNavigator.teacherStudent);
