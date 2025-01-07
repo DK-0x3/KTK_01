@@ -27,22 +27,56 @@ namespace KTK.controls
         }
 
         // Метод для создания элементов динамически на основе данных
-        public void CreateScheduleItems(DateTime date, List<ScheduleModel> scheduleList)
+        public void CreateScheduleItems(DateTime fullDate, List<ScheduleModel> scheduleList)
         {
-            dateText.Text = date.ToString("dddd, dd.MM.yy", new System.Globalization.CultureInfo("ru-RU"));
-
-            ScheduleStackPanel.Children.Clear();
-
             foreach (var schedule in scheduleList)
             {
-                var innerGrid1 = new Grid
+                // Создаем элемент для расписания
+                var stackPanel = new StackPanel
                 {
-                    Background = (Brush)new BrushConverter().ConvertFrom("#4E4E50"),
-                    Height = 15
+                    Background = new SolidColorBrush(Color.FromArgb(255, 78, 78, 80)),
+                    Margin = new Thickness(5),
+                    Width = 250,
+                    MinHeight = 100
                 };
-                innerGrid1.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                innerGrid1.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+                // Добавляем информацию о предмете
+                stackPanel.Children.Add(new TextBlock
+                {
+                    Text = schedule.Subject,
+                    Foreground = new SolidColorBrush(Colors.White),
+                    FontSize = 14,
+                    Margin = new Thickness(0, 5, 0, 5)
+                });
+
+                // Добавляем информацию о времени
+                stackPanel.Children.Add(new TextBlock
+                {
+                    Text = $"{schedule.StartTime} - {schedule.EndTime}",
+                    Foreground = new SolidColorBrush(Colors.Gray),
+                    FontSize = 12,
+                    Margin = new Thickness(0, 0, 0, 5)
+                });
+
+                // Добавляем информацию о преподавателе
+                stackPanel.Children.Add(new TextBlock
+                {
+                    Text = $"Преподаватель: {schedule.Fio}",
+                    Foreground = new SolidColorBrush(Colors.White),
+                    FontSize = 12
+                });
+
+                stackPanel.Children.Add(new TextBlock
+                {
+                    Text = $"Кабинет: {schedule.Room}",
+                    Foreground = new SolidColorBrush(Colors.White),
+                    FontSize = 12
+                });
+
+                // Добавляем расписание в панель
+                ScheduleWrapPanel.Children.Add(stackPanel);
             }
         }
+
     }
 }
