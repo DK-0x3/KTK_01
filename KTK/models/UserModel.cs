@@ -22,8 +22,13 @@ namespace KTK.models
         public string Email { get; set; }
     }
 
+    public static class UserStatic
+    {
+        public static int Group { get; set; }
+        public static int ID { get; set; }
+    }
 
-   public static class UserRole
+    public static class UserRole
     {
         public const string Student = "Студент";
         public const string Teacher = "Преподаватель";

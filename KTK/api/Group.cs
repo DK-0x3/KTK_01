@@ -25,6 +25,27 @@ namespace KTK.api
             }
         }
 
+        public int GetGroupOnStudnt(string query)
+        {
+            using (var connection = new SqlConnection(_database.connectionString))
+            using (var command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        return (int)reader["group"];
+
+                    }
+
+                }
+                return 0;
+            }
+        }
+
         public void MergeGroupAndUser(string query)
         {
             using (var connection = new SqlConnection(_database.connectionString))

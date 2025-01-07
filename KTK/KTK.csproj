@@ -68,6 +68,7 @@
     </Page>
     <Compile Include="api\Database.cs" />
     <Compile Include="api\Group.cs" />
+    <Compile Include="api\Schedule.cs" />
     <Compile Include="api\User.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

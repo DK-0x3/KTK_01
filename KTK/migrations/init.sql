@@ -1,3 +1,4 @@
+
 CREATE TABLE [User] (
   [id] int IDENTITY(1,1) NOT NULL UNIQUE,
   [email] nvarchar(128) NOT NULL UNIQUE,
@@ -9,8 +10,8 @@ CREATE TABLE [User] (
 );
 
 CREATE TABLE [UserGroup] (
-  [group] int NOT NULL UNIQUE,
-  [user] int NOT NULL UNIQUE,
+  [group] int NOT NULL,
+  [user] int NOT NULL,
   PRIMARY KEY ([group], [user])
 );
 
@@ -20,7 +21,7 @@ CREATE TABLE [Group] (
   PRIMARY KEY ([id])
 );
 
-CREATE TABLE [Shedule] (
+CREATE TABLE [Schedule] (
   [id] int IDENTITY(1,1) NOT NULL UNIQUE,
   [group] int NOT NULL,
   [user] int NOT NULL,
@@ -50,10 +51,10 @@ ALTER TABLE [UserGroup] ADD CONSTRAINT [user_group_fk0] FOREIGN KEY ([group]) RE
 
 ALTER TABLE [UserGroup] ADD CONSTRAINT [user_group_fk1] FOREIGN KEY ([user]) REFERENCES [User]([id]);
 
-ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk1] FOREIGN KEY ([group]) REFERENCES [Group]([id]);
+ALTER TABLE [Schedule] ADD CONSTRAINT [shedule_fk1] FOREIGN KEY ([group]) REFERENCES [Group]([id]);
 
-ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk2] FOREIGN KEY ([user]) REFERENCES [User]([id]);
+ALTER TABLE [Schedule] ADD CONSTRAINT [shedule_fk2] FOREIGN KEY ([user]) REFERENCES [User]([id]);
 
-ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk3] FOREIGN KEY ([room]) REFERENCES [Room]([id]);
+ALTER TABLE [Schedule] ADD CONSTRAINT [shedule_fk3] FOREIGN KEY ([room]) REFERENCES [Room]([id]);
 
-ALTER TABLE [Shedule] ADD CONSTRAINT [shedule_fk5] FOREIGN KEY ([subject]) REFERENCES [Subject]([id]);
+ALTER TABLE [Schedule] ADD CONSTRAINT [shedule_fk5] FOREIGN KEY ([subject]) REFERENCES [Subject]([id]);

@@ -105,9 +105,12 @@ namespace KTK.Pages
 
                         _group.MergeGroupAndUser($"INSERT INTO [UserGroup] ([group],[user]) VALUES ({groupID},{userID})");
                     }
-                }
-              
 
+                    UserStatic.Group = _group.GetGroupOnStudnt($"SELECT [group] FROM [UserGroup]\r\nINNER JOIN [User] on [User].id = [UserGroup].[user]\r\nWHERE [User].[id] = {userID}");
+
+                }
+
+                UserStatic.ID = userID;
                 navigateUser(selectetRoleComboBox.Text);
             }
             else

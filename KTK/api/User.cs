@@ -42,6 +42,24 @@ namespace KTK.api
             return (false, "");
         }
 
+        public int GetIDForLogin(string query)
+        {
+            using (var connection = new SqlConnection(_database.connectionString))
+            using (var command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+
+                using (var reader = command.ExecuteReader()) {
+
+                    while (reader.Read()) {
+                        return (int)reader["id"];
+                    }
+                    return 0;
+                }
+            }
+        }
+
+
         public int Registration(string query)
         {
             using (var connection = new SqlConnection(_database.connectionString))

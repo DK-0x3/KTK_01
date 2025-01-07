@@ -20,13 +20,17 @@ namespace KTK.Pages
     /// <summary>
     /// Логика взаимодействия для authorization.xaml
     /// </summary>
+    /// 
     public partial class authorization : Page
     {
+       
         private User _user;
+        private Group _group;
         public authorization()
         {
             InitializeComponent();
             _user = new User();
+            _group = new Group();
         }
 
         private void Authorization_Click(object sender, RoutedEventArgs e)
@@ -38,6 +42,9 @@ namespace KTK.Pages
                 var (answer,role) = _user.Authorization($"SELECT * FROM [User] WHERE [login] = '{loginTextBox.Text}' AND [password] = '{passwordTextBox.Password}'");
                 if (answer == true)
                 {
+                    int userID = _user.GetIDForLogin($"SELECT [id] FROM [User] WHERE [login] = '{loginTextBox.Text}'");
+                    UserStatic.Group = _group.GetGroupOnStudnt($"SELECT [group] FROM [UserGroup]\r\nINNER JOIN [User] on [User].id = [UserGroup].[user]\r\nWHERE [User].[id] = {userID}");
+                    UserStatic.ID =  userID;
                     navigateUser(role);
                 }
                 else
